@@ -1,0 +1,121 @@
+\documentclass[a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\renewcommand{\Frlabelitemi}{\textbullet}
+\usepackage{fancyhdr}
+\usepackage{tikz}\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{lipsum} % Pour générer du texte fictif
+\newcommand{\verticalline}{\vrule width 1.5pt\hspace{5pt}}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{esvect} % Pour les vecteurs
+\usepackage{cancel} % pour barrer du texte
+
+%--------------------------------------------------------------------------
+% Pour mettre les sections en chiffres romains et les subsections en lettres majuscules
+
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+%--------------------------------------------------------------------------
+% Lien cliquable
+\usepackage{hyperref}
+
+%--------------------------------------------------------------------------
+% Checklist
+
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+	\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%--------------------------------------------------------------------------
+% Mise en page
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{1pt}
+\lhead{MemoryRace}
+\chead{}
+\rhead{Compte-rendu de réunion}
+\lfoot{Alexandre Naizondard / Nicolas Gasca}                      % Nom du rédacteur
+\cfoot{\thepage}
+\rfoot{Nicolas Nèble / Hugo Kennedy-Martinez}                   % Nom des relecteurs
+
+\begin{document}
+	
+	\vspace*{-1.2cm} % Ajustez la valeur de l'espace vertical négatif pour rapprocher le cadre du haut de la page
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw,double,thick,inner sep=10pt,double distance=2pt, text width=\textwidth, align=center] {\textbf{\LARGE Compte-rendu de la réunion du 05/05/2025}};
+		\end{tikzpicture}
+	\end{center}
+	
+	\section{Présences}
+	
+	\begin{todolist}
+		\item[\done] François Trahay (Tuteur)
+		\item[\done] Alexandre Naizondard
+		\item[\done] Nicolas Gasca
+		\item[\done] Nicolas Nèble
+		\item[\done] Hugo Kennedy-Martinez
+	\end{todolist}
+	
+	\section{Ordre du jour}
+	
+	À signaler : la réunion s'est faite très rapidement pour des contraintes de temps.
+	
+	\begin{itemize}
+		\item Avancés sur le GUI
+		\item Avancés sur les requêtes
+	\end{itemize}
+	
+	\section{Présentation}
+	
+	\subsection{Avancés sur le GUI}
+	
+	Nicolas Nèble dit que l’interface graphique a pas mal évoluée. On a : 
+	\begin{itemize}
+		\item Séparation entre coureur et organisateur
+		\item Pour le coureur : sélectionner la  course et le numéro de dossard et ça récupère les photos.
+		\item Pour l'organisateur : pour la création de course, cela demande le nom de la course, la date et le lieu pour les envoyer à la base de donnée ; et on a aussi la possibilité de modifier la course (nom, lieu, ajouter de nouvelles photos)
+	\end{itemize}
+	Il fait également remarquer que pour l'instant, les photos s'affichage individuellement par fenêtre et qu'il serait mieux de faire une seule fenêtre de type galerie.
+	
+	\subsection{Avancés sur les requêtes}
+
+	On a une sépraration entre les requêtes et l’interface grapgique. La structure actuelle permet une plus grande abstraction. Il ne reste que quelques requêtes à terminer.
+	
+	M. Trahay demande si l’upload des photos lance le script de reconnaissance ? Alexandre répond que l'idée actuelle est que l'on ajoute les photos dans la base de données puis ça lance le script.
+	
+	\section{Remarques et conseils de M. Trahay}
+	
+	\begin{itemize}
+		\item La soutenance ne sera en fait pas sur les créneaux indiqués car il est en déplacement toute cette semaine (semaine du 2 juin), donc cela sera sûrement la semaine suivante. Il doit juste trouver une date et un président de jury.
+	\end{itemize}
+	
+	\section{A faire pour la prochaine fois}
+	
+	\begin{itemize}
+		\item côté affichage de la galerie.
+		\item fin des requêtes à faire.
+		\item Lien Database et script python.
+		\item En résumé, terminer le tout pour le rendu de la version finale le 17 mai.
+	\end{itemize}
+	
+	\centering\Huge\textbf{Pas de prochaine réunion prévue}\\
+	
+\end{document}

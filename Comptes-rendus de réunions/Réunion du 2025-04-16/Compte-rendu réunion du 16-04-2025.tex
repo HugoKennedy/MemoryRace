@@ -1,0 +1,135 @@
+\documentclass[a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\renewcommand{\Frlabelitemi}{\textbullet}
+\usepackage{fancyhdr}
+\usepackage{tikz}\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{lipsum} % Pour générer du texte fictif
+\newcommand{\verticalline}{\vrule width 1.5pt\hspace{5pt}}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{esvect} % Pour les vecteurs
+\usepackage{cancel} % pour barrer du texte
+
+%--------------------------------------------------------------------------
+% Pour mettre les sections en chiffres romains et les subsections en lettres majuscules
+
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+%--------------------------------------------------------------------------
+% Lien cliquable
+\usepackage{hyperref}
+
+%--------------------------------------------------------------------------
+% Checklist
+
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+	\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%--------------------------------------------------------------------------
+% Mise en page
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{1pt}
+\lhead{MemoryRace}
+\chead{}
+\rhead{Compte-rendu de réunion}
+\lfoot{Alexandre Naizondard / Nicolas Gasca}                      % Nom du rédacteur
+\cfoot{\thepage}
+\rfoot{Nicolas Nèble / Hugo Kennedy-Martinez}                   % Nom des relecteurs
+
+\begin{document}
+	
+	\vspace*{-1.2cm} % Ajustez la valeur de l'espace vertical négatif pour rapprocher le cadre du haut de la page
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw,double,thick,inner sep=10pt,double distance=2pt, text width=\textwidth, align=center] {\textbf{\LARGE Compte-rendu de la réunion du 16/04/2025}};
+		\end{tikzpicture}
+	\end{center}
+	
+	\section{Présences}
+	
+	\begin{todolist}
+		\item[\done] François Trahay (Tuteur)
+		\item[\done] Alexandre Naizondard
+		\item[\done] Nicolas Gasca
+		\item[\done] Nicolas Nèble
+		\item[\done] Hugo Kennedy-Martinez
+	\end{todolist}
+	
+	\section{Ordre du jour}
+	
+	\begin{itemize}
+		\item Avancé sur la détection de dossard
+		\item Avancé sur l'application
+	\end{itemize}
+	
+	\section{Présentation}
+	
+	\subsection{Avancés sur la détection de dossard}
+	
+	Hugo souligne qu'il a commencé par une première extraction plus manuelle (utilisation de pytesseract). Puis il arrêté cette partie pour utiliser entièrement de l'IA avec leurs API.
+	
+	Il les a presque toutes testées, chacune à ses pours et ses contres :
+	\begin{itemize}
+		\item Gemini : Hugo fait une démonstration en direct, ça fonctionne extrêmement bien. En revanche, le soucis est la vitesse et l'intégration. Gemini met 4,5s alors que Mistral est beaucoup plus rapide ce qui pourrait soucis sur des gros volumes de photos. Il est également compliqué d'obtenir la clé d'API de Gemini. Mais en utilisation, c'est immédiat : on charge le modèle, envoie le prompt et ça génère le résultat. Un des intérêts avec Gemini, on peut faire tourner en local
+		\item Mistral : Beaucoup plus rapide que Gemini donc intéressant d'un point de vue performance mais plus difficile à mettre en place. Il faut utiliser des headers et autres, ce qui complique grandement les prompts.
+		\item M. Trahay demande si on pourrait utiliser Ollama. Cela permet de faire tourner des modèles d’IA sur son ordinateur et c'est extrêmement facile à installer. On peut de plus faire le prompt dans le terminal.
+	\end{itemize}
+	
+	Hugo explique qu'il a fait les tests avec le micro dataset qu’on a utilisé pour le prototype.
+	
+	Il se pose également la question de comment on exploite au niveau des numéros de dossard ? Par exemple, si on a un numéro coupé qui donne 46, mais que les dossards font 4 chiffres, on sait qu'on a pas un dossard complet. Donc à voir comment on décide de traiter les numéros de dossard après l’extraction
+	on pourrait coupler les numéros avec de la reconnaissance faciale, pour affiner la détection suggère M. Trahay.
+	
+	Suite à une remarque sur le dataset, M. Trahay demande si l'on  ne pourrait pas récupérer toutes les photos du Bike\&Run et pas simplement celles sur Facebook pour avoir le plus de photos possible. Il reste toujours la question des problèmes RGPD donc M. Trahay conseille de contacter Benoit JEAN pour se fixer sur le sujet mais que de toutes façons, on avait décidé de ne pas se compliquer la vie avec le RGPD puisque l'on était strictement dans le cadre d'un projet scolaire.
+	
+	\subsection{Avancés sur l'application}
+	
+	M. Trahay demande comment on a avancé du côté de l'application.
+	
+	Nicolas Gasca répond que l'on essaie de régler les dépendances pour le soucis qu’on avait avant, à tester si ça fonctionne bien avec maeven.
+	
+	M. Trahay demande alors si les tests Gunits vont bien se mettre sur les autres IDE. Nicolas Gasca répond que normalement, maeven gère aussi ça.
+	
+	Alexandre signale que l'on fonctionne encore avec la base de données en local pour l’instant.
+	
+	\section{Remarques et conseils de M. Trahay}
+	
+	\begin{itemize}
+		\item Utiliser Ollama pour l'IA. Permet de faire tourner des modèles en local et facile à utiliser.
+		\item Coupler la reconnaissance des numéros de dossard à de la reconnaissance faciale pour améliorer la qualité des résultats.
+		\item Contacter Benoit JEAN pour avoir des informations sur ce que l'on a le droit d'utiliser en image d'après le RGPD.
+	\end{itemize}
+	
+	\section{A faire pour la prochaine fois}
+	
+	\begin{itemize}
+		\item Côté application : rédiger les objets pour faire les requêtes nécessaires + faire les tests unitaires 
+		\item Connexion entre python et la base de donnée. 
+		\item Amélioration du visuel du GUI
+	\end{itemize}
+	
+	M. Trahay demande si l'on change de langage pour l’interface organisateur. Nicolas Gasca répond que dans l’idée, non, c’est la même appli, juste on remplit si on est coureur ou organisateur et ça propose 2 interfaces différentes.
+	
+	\centering\Huge\textbf{Prochaine réunion :}\\
+	\centering\Huge\textbf{Lundi 5 mai à 16h15, D306}
+	
+\end{document}

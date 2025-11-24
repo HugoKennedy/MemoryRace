@@ -1,0 +1,127 @@
+\documentclass[a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\renewcommand{\Frlabelitemi}{\textbullet}
+\usepackage{fancyhdr}
+\usepackage{tikz}\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{lipsum} % Pour générer du texte fictif
+\newcommand{\verticalline}{\vrule width 1.5pt\hspace{5pt}}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{esvect} % Pour les vecteurs
+\usepackage{cancel} % pour barrer du texte
+
+%--------------------------------------------------------------------------
+% Pour mettre les sections en chiffres romains et les subsections en lettres majuscules
+
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+%--------------------------------------------------------------------------
+% Lien cliquable
+\usepackage{hyperref}
+
+%--------------------------------------------------------------------------
+% Checklist
+
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+	\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%--------------------------------------------------------------------------
+% Mise en page
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{1pt}
+\lhead{MemoryRace}
+\chead{}
+\rhead{Compte-rendu de réunion}
+\lfoot{Alexandre Naizondard / Nicolas Gasca}                      % Nom du rédacteur
+\cfoot{\thepage}
+\rfoot{Nicolas Nèble / Hugo Kennedy-Martinez}                   % Nom des relecteurs
+
+\begin{document}
+	
+	\vspace*{-1.2cm} % Ajustez la valeur de l'espace vertical négatif pour rapprocher le cadre du haut de la page
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw,double,thick,inner sep=10pt,double distance=2pt, text width=\textwidth, align=center] {\textbf{\LARGE Compte-rendu de la réunion du 15/01/2025}};
+		\end{tikzpicture}
+	\end{center}
+	
+	\section{Présences}
+	
+	\begin{todolist}
+		\item[\done] François Trahay (Tuteur)
+		\item[\done] Alexandre Naizondard
+		\item[\done] Nicolas Gasca
+		\item[\done] Nicolas Nèble
+		\item[\done] Hugo Kennedy-Martinez
+	\end{todolist}
+	
+	\section{Présentations}
+	
+	\noindent \textbf{Présentation succinte du projet :} sur certaine courses, il y a des photographes et toutes les photos sont disponibles à la fin. Comme il est fastidieux de ce retrouver, l'idée est de proposer un outil permettant de retrouver ses photos à partir de son numéro de dossard. \\
+	\noindent Exemple d’outil qui fait la même chose sur une course : \url{https://photorunning.com/events/2336/id }. \\
+	
+	\noindent Petit tour de table pour savoir le niveau de connaissance des gens et leur intérêt pour le projet ainsi que leur VAP voulue : globalement, niveau débutant. Seulement fait quelques petits projets ou travaux mais rien d'aussi gros et concret. \\
+	\noindent Retour d’expérience du tuteur. Préférence pour le système et ce qui se rattache au bas niveau. Il s'y connaît un peu en python mais il n'a jamais fait d’openCV.
+	
+	\section{Organisation globale du projet}
+	\noindent \textbf{Java conseillé pour ce projet.} Dans la réalité, on aurait besoin de faire web mais il nous conseille de faire du Java car cela nous permettra d’apprendre plus, ce qui reste le but premier de ce projet. Si jamais on finit ce qu'on avait prévu pour le projet avant la deadline, il nous rajoutera des choses à faire dessus au fur et à mesure pour nous occuper jusqu'à la fin (on pourra éventuellement faire la partie web à ce moment). \\
+	
+	\noindent Il faut compter sur une réunion d’environ $1h$ toutes les 2 semaines. Le but est de vérifier que l'on avance bien (qu'on ne se mette pas à travailler en mai) et nous débloquer au besoin. Il ne faut néanmoins pas hésiter à envoyer un mail entre 2 réunions si l'on se retrouve bloqué sur un point.\\
+	
+	\noindent Le livrable 1 doit contenir :
+	\begin{itemize}
+		\item cahier des charges : fonctionnalités du projet.
+		\item planning prévisionnel : diagramme de Gant. Identifier tout ce qui est à faire (les principaux blocs du projet) et leurs interdépendances pour savoir ce qui peut être fait indépendamment.
+		\item Les infos jusqu’à la « conception préliminaire » du projet.
+	\end{itemize}
+	
+	\noindent L'idée du premier livrable est qu'il faut savoir en amont comment on va programmer avant de se lancer tête baissée dedans. \\
+	\noindent Le livrable 2 correspond à un premier prototype. Il faut avoir pour cela des parties du projet final (par exemple juste un programme python qui identifie le dossard, ou une application Java qui affiche les images). \\
+	\noindent Le livrable 3 est le livrable final (avant la soutenance). Il s'afit de délivrer le logiciel, d'avoir effectué des tests (on parlera de cela le moment venu), et finalement d'en faire le rapport. La soutenance se tiendra début juin. \\
+	Nous avons des exemples des différents livrables disponibles sur moodle au besoin. Quand il s'agira de les rendre, il faudra à la fois les envoyer par mail et les déposer sur moodle. \\
+	
+	\noindent Il faut quelqu’un qui prenne les notes à chaque réunion qu’il faudra envoyer sous forme de compte-rendu, et on définira la date de la prochaine réunion donc venir avec les emplois du temps. Le plus simple sera de déposer les compte-rendus dans un dossier spécifique sur git.
+	
+	\noindent \textbf{Suivi d’activité :} à chaque fois que l’on travaille, noter le temps qu’on passe dessus, ainsi que sur quoi on travaille, pour avoir une idée à la fin de nos erreurs, en comparant notamment le temps que l'on avait prévu de passer sur une partie avec le temps réel.\\
+	
+	\noindent \textbf{Quand on envoie un mail au tuteur, bien mettre les autres membres du projet en copie et mettre dans le sujet le nom du projet pour que ce soit bien clair.}
+	
+	\section{A faire pour la prochaine fois}
+	
+	\noindent Il nous est conseillé de faire un repo git sur le git de l’école.
+	Première étape : se connecter tous sur le git de l’école, une personne du groupe crée un projet et invite les autres (ainsi que le tuteur) et déposer le fichier de compte rendu dessus.\\
+	\noindent L'étape suivant serait d'étendre la présentation du projet pour faire le premier livrable, se répartir les différentes tâches à faire, qui se spécialise en quoi, etc.\\
+	
+	\noindent Ensuite, il faudra commencer à réfléchir ce que l’on va mettre dans la base de données. Quelles sont les tables dont on va avoir besoin, quels sont liens entre elles, etc. Il serait bien d'avoir fait un schéma de ces tables pour la prochaine réunion.
+	
+	\noindent Par exemple :
+	\begin{itemize}
+		\item lien entre Nom et numéro de dossard.
+		\item informations sur les photos (chemin de stockage, position GPS, course à laquelle appartient cette photo).
+	\end{itemize}
+	
+	\noindent Enfin, réfléchir à quoi vont ressembler les requêtes pour accéder à ce dont on va avoir besoin dans la base de donnée. \\
+	
+	\centering\Huge\textbf{Prochaine réunion :}\\
+	\centering\Huge\textbf{Merecredi 5 février à 16h30, D306}
+	
+\end{document}

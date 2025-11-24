@@ -1,0 +1,142 @@
+\documentclass[a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\renewcommand{\Frlabelitemi}{\textbullet}
+\usepackage{fancyhdr}
+\usepackage{tikz}\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{lipsum} % Pour générer du texte fictif
+\newcommand{\verticalline}{\vrule width 1.5pt\hspace{5pt}}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{esvect} % Pour les vecteurs
+\usepackage{cancel} % pour barrer du texte
+
+%--------------------------------------------------------------------------
+% Pour mettre les sections en chiffres romains et les subsections en lettres majuscules
+
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+%--------------------------------------------------------------------------
+% Lien cliquable
+\usepackage{hyperref}
+
+%--------------------------------------------------------------------------
+% Checklist
+
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+	\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%--------------------------------------------------------------------------
+% Mise en page
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{1pt}
+\lhead{MemoryRace}
+\chead{}
+\rhead{Compte-rendu de réunion}
+\lfoot{Alexandre Naizondard / Nicolas Gasca}                      % Nom du rédacteur
+\cfoot{\thepage}
+\rfoot{Nicolas Nèble / Hugo Kennedy-Martinez}                   % Nom des relecteurs
+
+\begin{document}
+	
+	\vspace*{-1.2cm} % Ajustez la valeur de l'espace vertical négatif pour rapprocher le cadre du haut de la page
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw,double,thick,inner sep=10pt,double distance=2pt, text width=\textwidth, align=center] {\textbf{\LARGE Compte-rendu de la réunion du 05/02/2025}};
+		\end{tikzpicture}
+	\end{center}
+	
+	\section{Présences}
+	
+	\begin{todolist}
+		\item[\done] François Trahay (Tuteur)
+		\item[\done] Alexandre Naizondard
+		\item[\done] Nicolas Gasca
+		\item[\done] Nicolas Nèble
+		\item[\done] Hugo Kennedy-Martinez
+	\end{todolist}
+	
+	\section{Ordre du jour}
+
+	\begin{itemize}
+		\item Création du gitlab
+		\item Répartition des tâches
+		\item Schéma de la base de donnée
+		\item Début du livrable 1
+	\end{itemize}
+	
+	\section{Présentation}
+	
+	\subsection{Création du gitlab}
+	
+	Le gitlab a été créé et nous avons commencé à le structurer. Le compte rendu de la dernière réunion y a été également déposé.
+	
+	\subsection{Répartition des tâches}
+	
+	Nous avons commencé la rédaction du plan pour que nous nous mettions d’accord sur la répartition des tâches. Nicolas Nèble présente le plan que nous voulons faire. Validé par M. Trahay.
+	
+	\subsection{Schéma de la base de donnée}
+	
+	Il faudrait enlever id\_parcours dans un premier temps ou enlever id\_course puis table parcours avec un id\_parcours, id\_course et longueur
+	Il faudrait également penser à rajouter des clés primaires.
+	
+	\subsection{Début du livrable 1}
+	
+	Présentation du livrable 1 :
+	\begin{itemize}
+		\item plan.
+		\item planning prévisionnel jusqu'au prototype.
+		\item diagramme de Gantt.
+		\item liens entre les parties du projet.
+	\end{itemize}
+	
+	Il faudra présenter le schéma de base de donnée dans le livrable 1. Egalement, notre partie python n'est pas assez claire, il faudra redétailler son fonctionnement.
+	
+	Nous allons utiliser un modèle déjà entraîné pour la détecttion des numéros de dossard, nous ne sommes pas là pour entraîner un nouveau modèle. Cela serait un projet développement complet. 
+	 
+	Un panneau de vitesse pourrait perturber. L’extraction de chiffre n’est pas difficile, le soucis est vraiment d’exploiter ces chiffres pour bien avoir le dossard. On peut par exemple vérifier le nombre de chiffres pour s’assurer que ça n’est pas troncaté sur la photo. Il peut alors être intéressant de rajouter dans la base de donnée le nombre de numéros sur les dossards. Cela pourrait se faire aussi au moment de l’import, à voir.
+	
+	Une autre option serait d'utiliser des bibliothèques qui permettent de reconnaître les visages humains pour aider la reconnaissance de chiffres, ça peut être une piste à exploiter. Est ce qu’une autre manière de reconnaître les coureurs serait d’utiliser de la reconnaissance faciale pour identifier plus facilement ? Par exemple, si on voit le coureur 27 sans lunettes, ça peut donner un indice que ça ne fonctionne pas correctement. Mais cela rajouterait des étapes supplémentaires pour gérer les cas compliqués où l’IA a du mal à détecter. Il faut penser à cela lors de la rédaction du cahier des charges aussi.
+	
+	Il faut également penser du coup dans le futur pour les algorithmes. Programmer de telle manière que ça ne pose pas de problème pour reprogrammer de cette nouvelle manière dans 2 mois.
+	
+	Annoter manuellement une partie pour pouvoir tester la validité du modèle d’IA
+	
+	\section{Remarques et conseils de M. Trahay}
+	
+	\begin{enumerate}
+		\item Dans un repo git, on met les sources qui permettent de générer les documents.
+		\item Pour du texte, code ou markdown, facile de résoudre les conflits sur git.
+		\item Pas de binaires sur le git
+		\item Penser au fait que le traitement des images va prendre du temps, à mettre dans le planning prévisionnel.
+		\item Penser dans le futur pour les algorithmes : programmer de telle manière que ça ne pose pas de problème pour reprogrammer de cette nouvelle manière dans 2 mois.
+	\end{enumerate}
+	
+	\section{A faire pour la prochaine fois}
+	
+	\begin{itemize}
+		\item Livrable 1
+	\end{itemize}
+	
+	\centering\Huge\textbf{Prochaine réunion :}\\
+	\centering\Huge\textbf{Lundi 17 février à 16h30, D306}
+	
+\end{document}

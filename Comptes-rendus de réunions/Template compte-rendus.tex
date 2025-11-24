@@ -1,0 +1,106 @@
+\documentclass[a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\renewcommand{\Frlabelitemi}{\textbullet}
+\usepackage{fancyhdr}
+\usepackage{tikz}\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{lipsum} % Pour générer du texte fictif
+\newcommand{\verticalline}{\vrule width 1.5pt\hspace{5pt}}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{esvect} % Pour les vecteurs
+\usepackage{cancel} % pour barrer du texte
+
+%--------------------------------------------------------------------------
+% Pour mettre les sections en chiffres romains et les subsections en lettres majuscules
+
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+%--------------------------------------------------------------------------
+% Lien cliquable
+\usepackage{hyperref}
+
+%--------------------------------------------------------------------------
+% Checklist
+
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+	\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%--------------------------------------------------------------------------
+% Mise en page
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{1pt}
+\lhead{MemoryRace}
+\chead{}
+\rhead{Compte-rendu de réunion}
+\lfoot{Alexandre Naizondard / Nicolas Gasca}                      % Nom du rédacteur
+\cfoot{\thepage}
+\rfoot{Nicolas Nèble / Hugo Kennedy-Martinez}                   % Nom des relecteurs
+
+\begin{document}
+	
+	\vspace*{-1.2cm} % Ajustez la valeur de l'espace vertical négatif pour rapprocher le cadre du haut de la page
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw,double,thick,inner sep=10pt,double distance=2pt, text width=\textwidth, align=center] {\textbf{\LARGE Compte-rendu de la réunion du ??/??/????}};
+		\end{tikzpicture}
+	\end{center}
+	
+	\section{Présences}
+	
+	\begin{todolist}
+		\item[\done] François Trahay (Tuteur)
+		\item[\done] Alexandre Naizondard
+		\item[\done] Nicolas Gasca
+		\item[\done] Nicolas Nèble
+		\item[\done] Hugo Kennedy-Martinez
+	\end{todolist}
+	
+	\section{Ordre du jour}
+	
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	
+	\section{Présentation}
+	
+	\subsection{}
+	
+	\subsection{}
+	
+	\subsection{}
+	
+	\section{Remarques et conseils de M. Trahay}
+	
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	
+	\section{A faire pour la prochaine fois}
+	
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	
+	\centering\Huge\textbf{Prochaine réunion :}\\
+	\centering\Huge\textbf{[jour-semaine] [numéro-jour] [mois] à [heure], [salle]}
+	
+\end{document}

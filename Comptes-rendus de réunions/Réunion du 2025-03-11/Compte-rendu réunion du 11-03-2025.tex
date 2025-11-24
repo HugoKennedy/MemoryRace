@@ -1,0 +1,113 @@
+\documentclass[a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\renewcommand{\Frlabelitemi}{\textbullet}
+\usepackage{fancyhdr}
+\usepackage{tikz}\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{lipsum} % Pour générer du texte fictif
+\newcommand{\verticalline}{\vrule width 1.5pt\hspace{5pt}}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{esvect} % Pour les vecteurs
+\usepackage{cancel} % pour barrer du texte
+
+%--------------------------------------------------------------------------
+% Pour mettre les sections en chiffres romains et les subsections en lettres majuscules
+
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+%--------------------------------------------------------------------------
+% Lien cliquable
+\usepackage{hyperref}
+
+%--------------------------------------------------------------------------
+% Checklist
+
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+	\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%--------------------------------------------------------------------------
+% Mise en page
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{1pt}
+\lhead{MemoryRace}
+\chead{}
+\rhead{Compte-rendu de réunion}
+\lfoot{Alexandre Naizondard / Nicolas Gasca}                      % Nom du rédacteur
+\cfoot{\thepage}
+\rfoot{Nicolas Nèble / Hugo Kennedy-Martinez}                   % Nom des relecteurs
+
+\begin{document}
+	
+	\vspace*{-1.2cm} % Ajustez la valeur de l'espace vertical négatif pour rapprocher le cadre du haut de la page
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw,double,thick,inner sep=10pt,double distance=2pt, text width=\textwidth, align=center] {\textbf{\LARGE Compte-rendu de la réunion du 11/03/2025}};
+		\end{tikzpicture}
+	\end{center}
+	
+	\section{Présences (distanciel)}
+	
+	\begin{todolist}
+		\item[\done] François Trahay (Tuteur)
+		\item[\done] Alexandre Naizondard
+		\item[\done] Nicolas Gasca
+		\item[\done] Nicolas Nèble
+		\item[\done] Hugo Kennedy-Martinez
+	\end{todolist}
+	
+	\section{Ordre du jour}
+	
+	\begin{itemize}
+		\item Choix de l'interface graphique
+		\item Premières étapes base de données
+		\item Première version de l'algorithme d'extraction
+	\end{itemize}
+	
+	\section{Présentation}
+	
+	\subsection{Choix de l'interface graphique}
+	
+	Le choix a été fait d'utiliser Swing qui reste le meilleur choix technologique dans notre situation : beaucoup plus de composants que JavaFX qui reste trop limité, et suffisant portable au contraire de SWT. Nicolas a fait une première version de GUI qui demande juste le numéro cherché et affiche l'image ayant ce numéro dans son nom. Cependant, M. Trahay n'a pas pu regarder car le push git a été mal effectué et ce sont des fichiers zip. 
+
+	\subsection{Premières étapes base de données}
+	
+	Création d'un docker-compose avec le schéma SQL. Il faut mettre les données trouvées dans la base MariaDB (choix fait sur le SGBD).
+	
+	\subsection{Première version de l'algorithme d'extraction}
+	
+	Hugo a presenté son algorithme d'extraction. Il fonctionne bien pour l'instant mais dans un cas assez simple où le chiffre est facilement reconnaissable. Il faudrait faire des tests sur des situations plus complexes afin de s'assurer qu'il est efficace. En cas de manque de reconnaissance, il faudrait déterminer ce qui les cause. Il n'a cependant pas encore push sur le gitlab car il a eu des soucis de configuration de son gitlab. Cela devrait néanmoins être fait dans la soirée.
+	
+	\subsection{Eventuels blocage}
+	
+	Pas vraiment de blocage à ce stade mais il nous manque la vision suffisamment globale du programme pour savoir où l'on va. C'est donc un point sur lequel il faut qu'on se penche pour s'assurer que ça ne nous pose pas de problèmes à l'avenir.
+	
+	\section{A faire pour la prochaine fois}
+	
+	\begin{itemize}
+		\item Pour la semaine suivante : avoir une première version du prototype afin de pouvoir lui présenter en avance et de pouvoir retraivailler au besoin avant la date de dépôt du livrable 2.
+		\item Pour le 28 mars : avoir fini le livrable 2
+	\end{itemize}
+	
+	\centering\Huge\textbf{Prochaine réunion :}\\
+	\centering\Huge\textbf{Mardi 1 Avril à 15h, D306}
+	
+\end{document}
