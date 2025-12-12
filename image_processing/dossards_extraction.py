@@ -45,7 +45,7 @@ for i in sys.argv[2:]:
 
     # SCRIPT 2 : Appel Gemini
 
-    genai.configure(api_key="AIzaSyBQLeGRqI93ezD-GGewOvZ1qHcf-1NgxzY")
+    genai.configure(api_key="")
     img = PIL.Image.open(image_path)
     model = genai.GenerativeModel("gemini-1.5-flash")
     prompt = (
