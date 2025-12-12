@@ -2,7 +2,7 @@ import PIL.Image
 import google.generativeai as genai
 
 
-genai.configure(api_key="AIzaSyBQLeGRqI93ezD-GGewOvZ1qHcf-1NgxzY")
+genai.configure(api_key="")
 
 
 img = PIL.Image.open("3.png")
